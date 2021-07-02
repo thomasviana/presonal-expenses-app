@@ -12,7 +12,12 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox(child: Text('\$${spendigAmount.toStringAsFixed(0)}')),
+        Container(
+          height: 20,
+          child: FittedBox(
+            child: Text('\$${spendigAmount.toStringAsFixed(0)}'),
+          ),
+        ),
         SizedBox(
           height: 4,
         ),
@@ -24,7 +29,7 @@ class ChartBar extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey, width: 1),
-                  color: Color.fromARGB(220, 220, 220, 1),
+                  color: Colors.black12,
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
