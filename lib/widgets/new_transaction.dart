@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personal_expenses_app/widgets/adaptive_button.dart';
 import 'package:personal_expenses_app/widgets/transaction_list.dart';
 import 'package:intl/intl.dart';
+import 'dart:io';
 
 class NewTransaction extends StatefulWidget {
   final Function addNewTx;
@@ -51,59 +54,62 @@ class _NewTransactionState extends State<NewTransaction> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Card(
-          elevation: 5,
-          child: Container(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                TextField(
-                  controller: _titleController,
-                  decoration: InputDecoration(
-                    labelText: 'Title',
+        SingleChildScrollView(
+          child: Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.only(
+                top: 10,
+                left: 10,
+                right: 10,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      labelText: 'Title',
+                    ),
+                    keyboardType: TextInputType.text,
+                    onSubmitted: (_) => _submitData(),
                   ),
-                  keyboardType: TextInputType.text,
-                  onSubmitted: (_) => _submitData(),
-                ),
-                TextField(
-                  controller: _amountController,
-                  decoration: InputDecoration(
-                    labelText: 'Amount',
+                  TextField(
+                    controller: _amountController,
+                    decoration: InputDecoration(
+                      labelText: 'Amount',
+                    ),
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
+                    onSubmitted: (_) => _submitData(),
                   ),
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  onSubmitted: (_) => _submitData(),
-                ),
-                Container(
-                  height: 70,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          _selectedDate == null
-                              ? 'No Date Chosen'
-                              : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
-                        ),
-                      ),
-                      TextButton(
-                          onPressed: _presentDatePicker,
+                  Container(
+                    height: 70,
+                    child: Row(
+                      children: [
+                        Expanded(
                           child: Text(
-                            'Choose Date',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )),
-                    ],
+                            _selectedDate == null
+                                ? 'No Date Chosen'
+                                : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}',
+                          ),
+                        ),
+                        AdaptiveFlatButton('Choose date', _presentDatePicker)
+                      ],
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.purple,
-                  ),
-                  onPressed: _submitData,
-                  child: Text(
-                    'Add Transaction',
-                  ),
-                )
-              ],
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.purple,
+                    ),
+                    onPressed: _submitData,
+                    child: Text(
+                      'Add Transaction',
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
