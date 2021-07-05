@@ -15,26 +15,20 @@ class ChartBar extends StatelessWidget {
         return Column(
           children: [
             Container(
-              height: constraint.maxHeight * 0.15,
+              height: constraint.maxHeight * 0.12,
               child: FittedBox(
                 child: Text('\$${spendigAmount.toStringAsFixed(0)}'),
               ),
             ),
             SizedBox(
-              height: constraint.maxHeight * 0.05,
+              height: constraint.maxHeight * 0.08,
             ),
             Container(
               height: constraint.maxHeight * 0.6,
-              width: 10,
+              width: 15,
               child: Stack(
+                alignment: Alignment.bottomCenter,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 1),
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
                   FractionallySizedBox(
                     heightFactor: spendingPctOfTotal,
                     child: Container(
@@ -43,7 +37,14 @@ class ChartBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                  )
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 1),
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -68,17 +68,35 @@ class _MyHomePageState extends State<MyHomePage> {
     Transaction(
         id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
     Transaction(
-        id: 't2', title: 'groceries', amount: 16.53, date: DateTime.now()),
+        id: 't2',
+        title: 'Groceries',
+        amount: 16.53,
+        date: DateTime.now().subtract(Duration(days: 1))),
     Transaction(
-        id: 't7', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
+        id: 't3',
+        title: 'Gas',
+        amount: 100.00,
+        date: DateTime.now().subtract(Duration(days: 2))),
     Transaction(
-        id: 't3', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
+        id: 't4',
+        title: 'Shirt',
+        amount: 15.99,
+        date: DateTime.now().subtract(Duration(days: 3))),
     Transaction(
-        id: 't4', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
+        id: 't5',
+        title: 'Coca cola',
+        amount: 5.99,
+        date: DateTime.now().subtract(Duration(days: 4))),
     Transaction(
-        id: 't5', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
+        id: 't6',
+        title: 'New thing',
+        amount: 25.99,
+        date: DateTime.now().subtract(Duration(days: 5))),
     Transaction(
-        id: 't6', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
+        id: 't7',
+        title: 'Other Shoes',
+        amount: 90.99,
+        date: DateTime.now().subtract(Duration(days: 6))),
   ];
 
   bool _showChart = true;

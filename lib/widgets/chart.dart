@@ -29,15 +29,15 @@ class Chart extends StatelessWidget {
     }).reversed.toList();
   }
 
-  get totalSpending {
-    return groupedTransactionValue.fold(0.0, (sum, item) {
-      return item['amount'];
+  double get maxSpending {
+    return groupedTransactionValue.fold(0.0, (max, item) {
+      return item['amount'] > max ? item['amount'] : max;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(groupedTransactionValue);
+    print(maxSpending);
     return Card(
         elevation: 6,
         margin: EdgeInsets.all(20),
@@ -51,9 +51,9 @@ class Chart extends StatelessWidget {
                 child: ChartBar(
                     data['day'],
                     data['amount'],
-                    totalSpending == 0.0
+                    maxSpending == 0.0
                         ? 0.0
-                        : (data['amount'] as double) / totalSpending),
+                        : (data['amount'] as double) / (maxSpending)),
               );
             }).toList(),
           ),
